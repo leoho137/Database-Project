@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block header %}
+  <h1>{% block title %}Dashboard{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <p>Welcome, {{ current_user.username }}!</p>
+  <ul>
+    <li><a href="{{ url_for('item.find_item') }}">Find Single Item</a></li>
+    <li><a href="{{ url_for('order.find_order') }}">Find Order Items</a></li>
+    <li><a href="{{ url_for('order.start_order') }}">Start Orders</a></li>
+    <li><a href="{{ url_for('order.add_to_order') }}">Add to Orders</a></li>    
+    <li><a href="{{ url_for('donation.accept_donation') }}">Accept Donation</a></li>
+  </ul>
+{% endblock %}

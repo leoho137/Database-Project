@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Find Order Items{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="orderID">Order ID:</label>
+    <input type="text" id="orderID" name="orderID" required>
+    <button type="submit">Search</button>
+  </form>
+{% endblock %}

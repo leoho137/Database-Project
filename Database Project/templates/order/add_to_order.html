@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Add to Current Order{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <p>Order ID: {{ order_id }}</p>
+  <form method="post" id="category-form">
+    <fieldset>
+      <legend>Select Category</legend>
+      <label for="mainCategory">Main Category:</label>
+      <select id="mainCategory" name="mainCategory" onchange="this.form.submit()" required>
+        <option value="" selected disabled>Choose a main category</option>
+        {% for category in categories %}
+          <option value="{{ category.mainCategory }}"
+            {% if category.mainCategory == request.form.get('mainCategory') %}selected{% endif %}>
+            {{ category.mainCategory }}
+          </option>
+        {% endfor %}
+      </select>
+    </fieldset>
+  </form>
+
+  {% if subcategories %}
+    <form method="post" id="subcategory-form">
+      <input type="hidden" name="mainCategory" value="{{ request.form.get('mainCategory') }}">
+      <fieldset>
+        <legend>Select Subcategory</legend>
+        <label for="subCategory">Sub Category:</label>
+        <select id="subCategory" name="subCategory" onchange="this.form.submit()" required>
+          <option value="" selected disabled>Choose a subcategory</option>
+          {% for subcategory in subcategories %}
+            <option value="{{ subcategory.subCategory }}"
+              {% if subcategory.subCategory == request.form.get('subCategory') %}selected{% endif %}>
+              {{ subcategory.subCategory }}
+            </option>
+          {% endfor %}
+        </select>
+      </fieldset>
+    </form>
+  {% endif %}
+
+  {% if available_items %}
+    <form method="post">
+      <input type="hidden" name="mainCategory" value="{{ request.form.get('mainCategory') }}">
+      <input type="hidden" name="subCategory" value="{{ request.form.get('subCategory') }}">
+      <fieldset>
+        <legend>Available Items</legend>
+        <ul>
+          {% for item in available_items %}
+            <li>
+              <input type="radio" id="item_{{ item.ItemID }}" name="itemID" value="{{ item.ItemID }}" required>
+              <label for="item_{{ item.ItemID }}">
+                {{ item.iDescription }} (Color: {{ item.color }}, Material: {{ item.material }})
+              </label>
+            </li>
+          {% endfor %}
+        </ul>
+        <button type="submit">Add Selected Item to Order</button>
+      </fieldset>
+    </form>
+  {% elif request.method == 'POST' %}
+    <p>No items available in the selected category and subcategory.</p>
+  {% endif %}
+{% endblock %}

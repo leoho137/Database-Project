@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Order Details{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if items %}
+    <ul>
+      {% for item in items %}
+        <li>
+          Item ID: {{ item.ItemID }}, Description: {{ item.iDescription }},
+          Room: {{ item.roomNum }}, Shelf: {{ item.shelfNum }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No items found for the given Order ID.</p>
+  {% endif %}
+  <a href="{{ url_for('order.find_order') }}">Back to Search</a>
+{% endblock %}

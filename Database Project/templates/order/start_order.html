@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Start an Order{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="clientUsername">Client Username:</label>
+    <input type="text" id="clientUsername" name="clientUsername" required>
+    <button type="submit">Start Order</button>
+  </form>
+{% endblock %}

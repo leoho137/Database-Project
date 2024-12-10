@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Item Locations{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  {% if pieces %}
+    <ul>
+      {% for piece in pieces %}
+        <li>Room: {{ piece.roomNum }}, Shelf: {{ piece.shelfNum }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No locations found for the given Item ID.</p>
+  {% endif %}
+  <a href="{{ url_for('item.find_item') }}">Back to Search</a>
+{% endblock %}

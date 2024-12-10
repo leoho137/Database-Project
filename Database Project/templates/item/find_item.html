@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Find Single Item{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post" action="{{ url_for('item.find_item') }}">
+    <label for="itemID">Item ID</label>
+    <input type="text" id="itemID" name="itemID" required>
+    <button type="submit">Search</button>
+</form>
+{% endblock %}

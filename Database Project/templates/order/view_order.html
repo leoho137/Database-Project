@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Order Details{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <p><strong>Order ID:</strong> {{ order.orderID }}</p>
+  <p><strong>Order Date:</strong> {{ order.orderDate }}</p>
+  <p><strong>Client Name:</strong> {{ order.client_fname }} {{ order.client_lname }}</p>
+  <p><strong>Supervisor:</strong> {{ order.supervisor }}</p>
+  <a href="{{ url_for('order.start_order') }}">Start Another Order</a>
+{% endblock %}
