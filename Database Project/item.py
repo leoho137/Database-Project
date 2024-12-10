@@ -22,7 +22,6 @@ def find_item():
         pieces = cursor.fetchall()
 
         if pieces:
-            print("yes pieces!!!!!!!!!!")
             return render_template('item/item_results.html', pieces=pieces)
         else:
             flash("No pieces found for the given Item ID.")
